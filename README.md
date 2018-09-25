@@ -1,12 +1,15 @@
 # Android Starterapp - Java
 Android project folder initialised with some basic settings and sdks
+
 ### Features
 - MVP Architecture
 - Flexible `build.gradle` file
+
 ### SDKs:
 - Stetho
 - Butterknife
 - Lombok
+
 ## Steps:
 - Clone this repo locally using `git clone https://github.com/null-check/android-starterapp-java.git`
 - Open the project using Android Studio
