@@ -1,27 +1,91 @@
+import java.text.SimpleDateFormat
+
 apply plugin: 'com.android.application'
 
+def SEPARATOR = '--------------------'
+def branchName = System.getProperty('branchName', project.getProperties().get('branchName', ''))
+def commitHash
+def buildTime = (new SimpleDateFormat("dd-MMM-yyyy hh:mm aa")).format(new Date())
+
+// RATIONALE: XX MM VV A PPP
+// XX -> BUILD TOOL VERSION
+// MM -> MIN SDK SUPPORT
+// VV -> MAJOR APP VERSION
+//  A -> MINOR APP VERSION
+// PP -> PATCH VERSION
+// eg. (271601000) -> BUILD TOOLS: 27 | MIN SDK VER: 16 | MAJOR APP VER: 01 | MINOR APP VERSION: 0 | PATCH VERSION: 00
+def appVersionCode = 271601000
+def appVersionName = "1.0.0"
+def final defaultApplicationId = "com.arjun.deeper"
+def final defaultAppName = "Deeper"
+
+try {
+    if (branchName == '') {
+        branchName = "git rev-parse --abbrev-ref HEAD".execute().text.trim()
+    }
+    if (branchName.contains("/"))
+        branchName = branchName.replace("/", "_")
+    if (branchName.contains("-"))
+        branchName = branchName.replace("-", "_")
+
+    def commitHashString = "git log --format=\"%H\" -n 1".execute().text
+    commitHash = commitHashString.substring(1, commitHashString.length() - 2)
+
+    println SEPARATOR
+    println "BRANCH NAME: " + branchName
+    println "COMMIT HASH: " + commitHash
+    println "BUILD TIME: " + buildTime
+    println SEPARATOR
+
+} catch (Exception ignored) {
+    println "Git not found"
+    println SEPARATOR
+}
+
 android {
-    compileSdkVersion 27
+    compileSdkVersion project.ANDROID_BUILD_SDK_VERSION.toInteger()
+
     defaultConfig {
-        applicationId "com.arjun.deeper"
-        minSdkVersion 16
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        applicationId  = defaultApplicationId
+        manifestPlaceholders = [ appName: "${defaultAppName}"]
+
+        buildConfigField("String", "APP_VERSION_NAME", "\"${appVersionName}\"")
+        buildConfigField("String", "APP_VERSION_CODE", "\"${appVersionCode}\"")
+        buildConfigField("String", "BRANCH_NAME", "\"${branchName}\"")
+        buildConfigField("String", "COMMIT_HASH", "\"${commitHash}\"")
+        buildConfigField("String", "BUILD_TIME", "\"${buildTime}\"")
+
+        applicationVariants.all { variant ->
+            def fileName = "--V" + variant.versionName + "--" + branchName + ".apk"
+            variant.outputs.each { output ->
+                output.outputFileName = output.outputFileName.replace(".apk", fileName)
+            }
+        }
+
+        minSdkVersion project.ANDROID_BUILD_MIN_SDK_VERSION.toInteger()
+        targetSdkVersion project.ANDROID_BUILD_TARGET_SDK_VERSION.toInteger()
+        versionCode appVersionCode
+        versionName appVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            manifestPlaceholders = [ appNameSuffix:" v${appVersionName}"]
+            applicationIdSuffix ".debug"
         }
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support:support-v4:27.1.1'
+    implementation "com.android.support:appcompat-v7:${project.ANDROID_SUPPORT_LIB_VERSION}"
+    implementation "com.android.support:support-v4:${project.ANDROID_SUPPORT_LIB_VERSION}"
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
