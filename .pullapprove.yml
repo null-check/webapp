@@ -1,0 +1,43 @@
+version: 1
+
+always_pending:
+      title_regex: '(WIP|wip)'
+      labels:
+        - wip
+
+group_defaults:
+  github_reviews:
+    enabled: true
+  approve_by_comment:
+    enabled: true
+    approve_regex: '^(Approved|:shipit:|:\+1:|LGTM)'
+    reject_regex: '^(Rejected|:-1:)'
+  reset_on_push:
+    enabled: true
+  reset_on_reopened:
+    enabled: true
+  author_approval:
+    enabled: true
+
+groups:
+  admin-review:
+    conditions:
+      labels:
+         include:
+           - admin-review
+    required: 1  # 1 of the reviewers must approve the PR
+    users:
+      - null-check
+
+  important-files:
+    conditions:
+      files:
+        - ".pullapprove.yml"
+    required: 1  # 1 of the 1 reviewers must approve the PR
+    users:
+      - null-check
+
+  devs:
+    required: 1  # 1 of the 1 reviewers must approve the PR
+    users:
+      - null-check
