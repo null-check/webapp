@@ -8,10 +8,6 @@ public interface InterfaceHome {
     interface IActivity extends IBaseView {
 
         void hideStatusBar();
-
-        void hideActionBar();
-
-        void showActionBar();
     }
 
     interface IPresenter extends IBasePresenter<IActivity> {
