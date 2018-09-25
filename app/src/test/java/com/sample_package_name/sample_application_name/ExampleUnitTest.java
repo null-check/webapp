@@ -1,4 +1,4 @@
-package com.arjun.deeper;
+package com.sample_package_name.sample_application_name;
 
 import org.junit.Test;
 

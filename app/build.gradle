@@ -16,8 +16,8 @@ def buildTime = (new SimpleDateFormat("dd-MMM-yyyy hh:mm aa")).format(new Date()
 // eg. (271601000) -> BUILD TOOLS: 27 | MIN SDK VER: 16 | MAJOR APP VER: 01 | MINOR APP VERSION: 0 | PATCH VERSION: 00
 def appVersionCode = 271601000
 def appVersionName = "1.0.0"
-def final defaultApplicationId = "com.arjun.deeper"
-def final defaultAppName = "Deeper"
+def final defaultApplicationId = "com.sample_package_name.sample_application_name"
+def final defaultAppName = "MyApplication"
 
 try {
     if (branchName == '') {

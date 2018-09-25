@@ -1,8 +1,8 @@
-package com.arjun.deeper.views.home;
+package com.sample_package_name.sample_application_name.views.home;
 
 import android.os.Handler;
 
-import com.arjun.deeper.baseclasses.BasePresenter;
+import com.sample_package_name.sample_application_name.baseclasses.BasePresenter;
 
 public class PresenterHome extends BasePresenter<InterfaceHome.IActivity> implements InterfaceHome.IPresenter {
 

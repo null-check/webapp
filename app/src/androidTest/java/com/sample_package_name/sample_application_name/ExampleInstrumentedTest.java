@@ -1,4 +1,4 @@
-package com.arjun.deeper;
+package com.sample_package_name.sample_application_name;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

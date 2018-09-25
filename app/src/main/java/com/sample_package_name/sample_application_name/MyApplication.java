@@ -1,11 +1,11 @@
-package com.arjun.deeper;
+package com.sample_package_name.sample_application_name;
 
 import android.app.Application;
 import android.content.Context;
 
 import com.facebook.stetho.Stetho;
 
-public class DeeperApplication extends Application {
+public class MyApplication extends Application {
 
     private static Context applicationContext;
 

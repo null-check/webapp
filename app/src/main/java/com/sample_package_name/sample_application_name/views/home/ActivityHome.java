@@ -1,4 +1,4 @@
-package com.arjun.deeper.views.home;
+package com.sample_package_name.sample_application_name.views.home;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.arjun.deeper.R;
+import com.sample_package_name.sample_application_name.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

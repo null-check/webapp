@@ -1,4 +1,4 @@
-package com.arjun.deeper.baseclasses;
+package com.sample_package_name.sample_application_name.baseclasses;
 
 import android.content.Intent;
 import android.os.Bundle;
