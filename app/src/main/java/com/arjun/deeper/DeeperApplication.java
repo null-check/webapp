@@ -24,4 +24,8 @@ public class DeeperApplication extends Application {
             Stetho.initializeWithDefaults(this);
         }
     }
+
+    public static Context getContext() {
+        return applicationContext;
+    }
 }
