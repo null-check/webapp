@@ -8,19 +8,21 @@ import android.view.ViewGroup;
 
 import com.arjun.deeper.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class ActivityHome extends AppCompatActivity implements InterfaceHome.IActivity {
 
-    private ViewGroup rootView;
+    @BindView(R.id.root_view)
+    protected ViewGroup rootView;
 
     private PresenterHome presenterHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
-        rootView = findViewById(R.id.root_view);
-
+        ButterKnife.bind(this);
         presenterHome = new PresenterHome(this);
     }
 
