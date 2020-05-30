@@ -96,8 +96,8 @@ dependencies {
     implementation 'com.facebook.stetho:stetho:1.5.0'
 
     // Butterknife
-    implementation 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+//    implementation 'com.jakewharton:butterknife:8.8.1'
+//    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
     // Lombok
 //    compileOnly 'org.projectlombok:lombok:1.18.2'

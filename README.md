@@ -1,16 +1,17 @@
-# Android Boilerplate Starterapp - Java
+# Android Boilerplate Starterapp
 Android project folder initialised with some basic settings and sdks
 
 ### Summary
-- Architecture: MVP 
+- Architecture: MVP
+- Kotlin enabled
 
 ### SDKs:
-- Stetho
-- Butterknife
-- Lombok
+- Stetho: Debug your app using Google Chrome https://github.com/facebook/stetho
+- Butterknife: Bind views easily using annotations https://github.com/JakeWharton/butterknife (Disabled by default since we have kotlin now)
+- Lombok: Easily add Getter and Setter using annotations https://github.com/rzwitserloot/lombok (Disabled by default since we have kotlin now)
 
 ## Steps:
-- Clone this repo locally using `git clone https://github.com/null-check/android-starterapp-java.git`
+- Clone this repo locally using `git clone https://github.com/null-check/android-starterapp.git`
 - Open the project using Android Studio
 - Change package and application names. If you don't know how to do this, you can follow these steps:
 - Open to any java file. You will see `package com.sample_package_name.sample_application_name` as the first line of the file.
