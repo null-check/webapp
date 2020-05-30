@@ -1,6 +1,8 @@
 import java.text.SimpleDateFormat
 
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 def SEPARATOR = '--------------------'
 def branchName = System.getProperty('branchName', project.getProperties().get('branchName', ''))
@@ -98,6 +100,12 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
     // Lombok
-    compileOnly 'org.projectlombok:lombok:1.18.2'
-    annotationProcessor 'org.projectlombok:lombok:1.18.2'
+//    compileOnly 'org.projectlombok:lombok:1.18.2'
+//    annotationProcessor 'org.projectlombok:lombok:1.18.2'
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${project.KOTLIN_VERSION}"
+}
+repositories {
+    mavenCentral()
 }
