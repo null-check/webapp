@@ -47,6 +47,11 @@ try {
 android {
     compileSdkVersion project.ANDROID_BUILD_SDK_VERSION.toInteger()
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     defaultConfig {
         applicationId  = defaultApplicationId
         manifestPlaceholders = [ appName: "${defaultAppName}"]
@@ -64,17 +69,24 @@ android {
             }
         }
 
+        multiDexEnabled true
+
         minSdkVersion project.ANDROID_BUILD_MIN_SDK_VERSION.toInteger()
         targetSdkVersion project.ANDROID_BUILD_TARGET_SDK_VERSION.toInteger()
         versionCode appVersionCode
         versionName appVersionName
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
+            useProguard true
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            manifestPlaceholders = [appNameSuffix: ""]
         }
 
         debug {
@@ -82,29 +94,43 @@ android {
             applicationIdSuffix ".debug"
         }
     }
+
+    buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
+
+    productFlavors {
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.android.support:appcompat-v7:${project.ANDROID_SUPPORT_LIB_VERSION}"
-    implementation "com.android.support:support-v4:${project.ANDROID_SUPPORT_LIB_VERSION}"
+    implementation "androidx.appcompat:appcompat:${project.ANDROIDX_SUPPORT_LIB_VERSION}"
+    implementation "androidx.legacy:legacy-support-v4:${project.ANDROIDX_SUPPORT_LIB_VERSION}"
+    // implementation "com.google.android.material:material:${project.ANDROIDX_SUPPORT_LIB_VERSION}"
+    // implementation "androidx.gridlayout:gridlayout:${project.ANDROIDX_SUPPORT_LIB_VERSION}"
+
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${project.KOTLIN_VERSION}"
+
+    // EventBus
+    implementation 'org.greenrobot:eventbus:3.1.1'
+
+    // Carbon
+    implementation 'tk.zielony:carbon:0.16.0.1'
 
     // Stetho
     implementation 'com.facebook.stetho:stetho:1.5.0'
 
     // Butterknife
-//    implementation 'com.jakewharton:butterknife:8.8.1'
-//    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    // implementation 'com.jakewharton:butterknife:10.1.0'
+    // annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
 
     // Lombok
-//    compileOnly 'org.projectlombok:lombok:1.18.2'
-//    annotationProcessor 'org.projectlombok:lombok:1.18.2'
-
-    // Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${project.KOTLIN_VERSION}"
+    // compileOnly 'org.projectlombok:lombok:1.18.2'
+    // annotationProcessor 'org.projectlombok:lombok:1.18.2'
 }
 repositories {
     mavenCentral()
