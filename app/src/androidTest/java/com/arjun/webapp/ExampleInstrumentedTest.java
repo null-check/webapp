@@ -1,4 +1,4 @@
-package com.sample_package_name.sample_application_name;
+package com.arjun.webapp;
 
 import android.content.Context;
 import androidx.test.InstrumentationRegistry;

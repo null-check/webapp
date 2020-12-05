@@ -1,11 +1,15 @@
-package com.sample_package_name.sample_application_name.views.home
+package com.arjun.webapp.views.home
 
+import android.os.Bundle
 import android.os.Handler
-import com.sample_package_name.sample_application_name.baseclasses.BasePresenter
-import com.sample_package_name.sample_application_name.views.home.InterfaceHome.IActivity
-import com.sample_package_name.sample_application_name.views.home.InterfaceHome.IPresenter
+import com.arjun.webapp.baseclasses.BasePresenter
+import com.arjun.webapp.views.home.InterfaceHome.IActivity
+import com.arjun.webapp.views.home.InterfaceHome.IPresenter
 
-class PresenterHome(view: IActivity) : BasePresenter<IActivity?>(view), IPresenter {
+const val START_URL = "http://myworkspace.ind.in"
+const val HOST = "myworkspace.ind.in"
+
+class PresenterHome(view: IActivity) : BasePresenter<IActivity>(view), IPresenter {
 
     private val hideHandler = Handler()
 
@@ -14,9 +18,14 @@ class PresenterHome(view: IActivity) : BasePresenter<IActivity?>(view), IPresent
         view.hideStatusBar()
     }
 
+    override fun onCreate(bundle: Bundle?) {
+        super.onCreate(bundle)
+        this.view.loadUrl(START_URL)
+    }
+
     override fun onResume() {
         super.onResume()
-        delayedHide()
+//        delayedHide()
     }
 
     /**

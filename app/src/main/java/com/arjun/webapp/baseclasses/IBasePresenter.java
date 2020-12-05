@@ -1,4 +1,4 @@
-package com.sample_package_name.sample_application_name.baseclasses;
+package com.arjun.webapp.baseclasses;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -15,11 +15,11 @@ def buildTime = (new SimpleDateFormat("dd-MMM-yyyy hh:mm aa")).format(new Date()
 // VV -> MAJOR APP VERSION
 //  A -> MINOR APP VERSION
 // PP -> PATCH VERSION
-// eg. (271601000) -> BUILD TOOLS: 27 | MIN SDK VER: 16 | MAJOR APP VER: 01 | MINOR APP VERSION: 0 | PATCH VERSION: 00
-def appVersionCode = 271601000
+// eg. (291601000) -> BUILD TOOLS: 29 | MIN SDK VER: 16 | MAJOR APP VER: 01 | MINOR APP VERSION: 0 | PATCH VERSION: 00
+def appVersionCode = 291601000
 def appVersionName = "1.0.0"
-def final defaultApplicationId = "com.sample_package_name.sample_application_name"
-def final defaultAppName = "MyApplication"
+def final defaultApplicationId = "com.arjun.webapp"
+def final defaultAppName = "WebApp"
 
 try {
     if (branchName == '') {
@@ -103,34 +103,15 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "androidx.appcompat:appcompat:${project.ANDROIDX_SUPPORT_LIB_VERSION}"
+    implementation "androidx.appcompat:appcompat:1.2.0"
     implementation "androidx.legacy:legacy-support-v4:${project.ANDROIDX_SUPPORT_LIB_VERSION}"
-    // implementation "com.google.android.material:material:${project.ANDROIDX_SUPPORT_LIB_VERSION}"
-    // implementation "androidx.gridlayout:gridlayout:${project.ANDROIDX_SUPPORT_LIB_VERSION}"
 
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test:runner:1.3.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${project.KOTLIN_VERSION}"
-
-    // EventBus
-    implementation 'org.greenrobot:eventbus:3.1.1'
-
-    // Carbon
-    implementation 'tk.zielony:carbon:0.16.0.1'
-
-    // Stetho
-    implementation 'com.facebook.stetho:stetho:1.5.0'
-
-    // Butterknife
-    // implementation 'com.jakewharton:butterknife:10.1.0'
-    // annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
-
-    // Lombok
-    // compileOnly 'org.projectlombok:lombok:1.18.2'
-    // annotationProcessor 'org.projectlombok:lombok:1.18.2'
 }
 repositories {
     mavenCentral()

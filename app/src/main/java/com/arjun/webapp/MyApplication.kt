@@ -1,8 +1,7 @@
-package com.sample_package_name.sample_application_name
+package com.arjun.webapp
 
 import android.app.Application
 import android.content.Context
-import com.facebook.stetho.Stetho
 
 class MyApplication : Application() {
 
@@ -18,7 +17,7 @@ class MyApplication : Application() {
 
     private fun initialiseDebugComponents() {
         if (BuildConfig.DEBUG) {
-            Stetho.initializeWithDefaults(this)
+            // Initialise debug tools here
         }
     }
 

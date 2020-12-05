@@ -20,34 +20,7 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
-
-# Carbon
--keepclasseswithmembernames class * {
-    native <methods>;
-}
-
--keep class android.support.v8.renderscript.** { *; }
-
--dontwarn carbon.BR
--dontwarn carbon.internal**
--dontwarn java.lang.invoke**
-
--dontwarn android.databinding.**
--keep class android.databinding.** { *; }
-
-# Canvas.save(int) removal in api 28 issue. I guess Carbon sdk uses this?
--dontwarn com.caverock.androidsvg.**
--keep class com.caverock.androidsvg.**
--keep interface com.caverock.androidsvg.**
-
-# EventBus
--keepattributes *Annotation*
--keepclassmembers class * {
-    @org.greenrobot.eventbus.Subscribe <methods>;
-}
--keep enum org.greenrobot.eventbus.ThreadMode { *; }
-
 # Only required if you use AsyncExecutor
--keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {
-    <init>(java.lang.Throwable);
-}
+#-keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {
+#    <init>(java.lang.Throwable);
+#}
